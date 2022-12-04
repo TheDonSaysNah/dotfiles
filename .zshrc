@@ -110,5 +110,5 @@ COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
 
 # sources
 source $ZSHDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $ZSH/ohmyzsh.sh
+source $ZSH/oh-my-zsh.sh
 source $ZSHDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # THIS MUST BE THE LAST SOURCE IN THE FILE
