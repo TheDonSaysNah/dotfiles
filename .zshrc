@@ -2,7 +2,9 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # exports
-export ZSH=$HOME/.local/share/oh-my-zsh
+export ZSHDIR=$HOME/.local/share/zsh_conf
+export ZSH=$ZSHDIR/ohmyzsh
+
 export PATH=$PATH:$HOME/Documents/IDEs
 export PATH=/$HOME/.surrealdb:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -31,7 +33,7 @@ WORDCHARS=${WORDCHARS//\/} # Don't consider certain characters part of the word
 PROMPT_EOL_MARK="" # hide EOL sign ('%')
 
 # aliases
-alias ls='ls -lah --color=auto'
+alias l='ls -lah --color=auto'
 alias ps='ps aux'
 alias grep='grep --color=always'
 alias reboot="shutdown -r now"
@@ -107,6 +109,6 @@ COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
 # HIST_STAMPS="dd/mm/yyyy"
 
 # sources
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $ZSHDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZSH/oh-my-zsh.sh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # THIS MUST BE THE LAST SOURCE IN THE FILE
+source $ZSHDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # THIS MUST BE THE LAST SOURCE IN THE FILE
