@@ -20,7 +20,7 @@ PS1="%F{87}┌──[%n%f@%F{87}%M:%f%d%F{87}]${NEWLINE}└─% $%f "
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 
 ENABLE_CORRECTION="true"
-plugins=(git)
+plugins=(git z)
 
 # User configuration
 
