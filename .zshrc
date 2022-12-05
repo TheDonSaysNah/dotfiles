@@ -1,3 +1,6 @@
+#If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -112,3 +115,5 @@ COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
 source $ZSHDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZSH/oh-my-zsh.sh
 source $ZSHDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # THIS MUST BE THE LAST SOURCE IN THE FILE
+
+eval "$(zoxide init zsh)"
