@@ -1,16 +1,26 @@
-#If not running interactively, don't do anything
-[[ $- != *i* ]] && return
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # exports
-export ZSHDIR=$HOME/.local/share/zsh_conf
+export ZSHDIR=/usr/local/share/zsh_conf
 export ZSH=$ZSHDIR/ohmyzsh
 
-export PATH=$PATH:$HOME/Documents/IDEs
-export PATH=/$HOME/.surrealdb:$PATH
+export PATH=$PATH:$HOME/Documents/IDEs/
+export PATH=$HOME/.surrealdb:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
+
+# configure key keybindings
+bindkey -e                                        # emacs key bindings
+bindkey ' ' magic-space                           # do history expansion on space
+bindkey '^[[3;5~' kill-word                       # ctrl + Supr
+bindkey '^[[3~' delete-char                       # delete
+bindkey '^[[1;5C' forward-word                    # ctrl + ->
+bindkey '^[[1;5D' backward-word                   # ctrl + <-
+bindkey '^[[5~' beginning-of-buffer-or-history    # page up
+bindkey '^[[6~' end-of-buffer-or-history          # page down
+bindkey '^[[H' beginning-of-line                  # home
+bindkey '^[[F' end-of-line                        # end
+bindkey '^[[Z' undo                               # shift + tab undo last action
 
 # prompt
 NEWLINE=$'\n'
@@ -24,8 +34,8 @@ PS1="%F{87}┌──[%n%f@%F{87}%M:%f%d%F{87}]${NEWLINE}└─% $%f "
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 
-ENABLE_CORRECTION="true"
-plugins=(git z)
+#ENABLE_CORRECTION="true"
+plugins=(git)
 
 # User configuration
 
@@ -36,13 +46,13 @@ WORDCHARS=${WORDCHARS//\/} # Don't consider certain characters part of the word
 PROMPT_EOL_MARK="" # hide EOL sign ('%')
 
 # aliases
-alias l='ls -lah --color=auto'
+alias ls='ls -lah --color=auto'
 alias ps='ps aux'
 alias grep='grep --color=always'
 alias reboot="shutdown -r now"
 alias htop='htop -d 8'
-#alias cd='z'
-alias paclean='pacman -Rns $(pacman -Qtdq)'
+alias cd='z'
+alias paclean='sudo pacman -Rns $(pacman -Qtdq)'
 alias cat='bat'
 alias tt='tmux attach-session -t $1'
 
@@ -55,6 +65,12 @@ setopt hist_ignore_dups       # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
 alias history="history 0" # force zsh to show the complete history
+
+# sources
+source $ZSHDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source $ZSH/oh-my-zsh.sh
+source $ZSHDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # THIS MUST BE THE LAST SOURCE IN THE FILE
+eval "$(zoxide init zsh)"
 
 
 # Preferred editor for local and remote sessions
@@ -110,10 +126,4 @@ COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
 # HIST_STAMPS="dd/mm/yyyy"
-
-# sources
-source $ZSHDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $ZSH/oh-my-zsh.sh
-source $ZSHDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # THIS MUST BE THE LAST SOURCE IN THE FILE
-
-eval "$(zoxide init zsh)"
+#
