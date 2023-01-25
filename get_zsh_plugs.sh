@@ -2,6 +2,9 @@ git clone https://github.com/ohmyzsh/ohmyzsh
 git clone https://github.com/zsh-users/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting
 
-mv ohmyzsh $HOME/.local/share/zsh_conf
-mv zsh-autosuggestions $HOME/.local/share/zsh_conf
-mv zsh-syntax-highlighting $HOME/.local/share/zsh_conf
+mkdir -p /usr/local/share/zsh_conf
+mv ohmyzsh /usr/local/share/zsh_conf
+mv zsh-autosuggestions /usr/local/share/zsh_conf
+mv zsh-syntax-highlighting /usr/local/share/zsh_conf
+
+chown $USER:$USER -R /usr/local/share/zsh_conf
