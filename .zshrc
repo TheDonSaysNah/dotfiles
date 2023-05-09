@@ -1,12 +1,12 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # exports
 export ZSHDIR=/usr/local/share/zsh_conf
 export ZSH=$ZSHDIR/ohmyzsh
 
 export PATH=$PATH:$HOME/Documents/IDEs/
 export PATH=$HOME/.surrealdb:$PATH
+export GBM_BACKEND=nvidia-drm
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # configure key keybindings
@@ -48,13 +48,16 @@ PROMPT_EOL_MARK="" # hide EOL sign ('%')
 # aliases
 alias ls='ls -lah --color=auto'
 alias ps='ps aux'
-alias grep='grep --color=always'
+alias grep='rg --color=always'
 alias reboot="shutdown -r now"
 alias htop='htop -d 8'
 alias cd='z'
 alias paclean='sudo pacman -Rns $(pacman -Qtdq)'
 alias cat='bat'
 alias tt='tmux attach-session -t $1'
+alias ttn='tmux new-session -s $1'
+alias ttl='tmux list-session'
+alias htp='htop -p $1'
 
 # history
 HISTFILE=~/.cache/.histfile
@@ -126,4 +129,3 @@ COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
 # HIST_STAMPS="dd/mm/yyyy"
-#
