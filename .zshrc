@@ -115,6 +115,7 @@ eval "$(zoxide init zsh)"
 # e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
 # Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
 # COMPLETION_WAITING_DOTS="true"
+
 COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -129,3 +130,18 @@ COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
 # HIST_STAMPS="dd/mm/yyyy"
+
+function paste_rs_post() {
+        local file=${1:-/dev/stdin}
+        curl --data-binary @${file} https://paste.rs
+}
+
+function build_server_release() {
+        dirname=$PWD
+        #shopt -s extglob           # enable +(...) glob syntax
+        result=${dirname%%+(/)}    # trim however many trailing slashes exist
+        result=${result##*/}       # remove everything before the last / that still remains
+        result=${result:-/}        # correct for dirname=/ case
+        docker run -v cargo-cache:/root/.cargo/registry -v "$PWD:/volume" --rm -it clux/muslrust:stable cargo update
+        docker run -v cargo-cache:/root/.cargo/registry -v "$PWD:/volume" --rm -it clux/muslrust:stable cargo b --package $result --bin $result --release
+}
