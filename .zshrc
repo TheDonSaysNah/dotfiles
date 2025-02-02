@@ -1,3 +1,6 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
 # exports
 export ZSHDIR=/usr/local/share/zsh_conf
 export ZSH=$ZSHDIR/ohmyzsh
@@ -42,13 +45,12 @@ plugins=(git)
 # You may need to manually set your language environment
 export LANG=en_GB.UTF-8
 
-WORDCHARS=${WORDCHARS//\/} # Don't consider certain characters part of the word
+WORDCHARS=${WORDCHARS/\/} # Don't consider certain characters part of the word
 PROMPT_EOL_MARK="" # hide EOL sign ('%')
 
 # aliases
 alias ls='ls -lah --color=auto'
 alias ps='ps aux'
-alias grep='rg --color=always'
 alias reboot="shutdown -r now"
 alias htop='htop -d 8'
 alias cd='z'
@@ -144,4 +146,16 @@ function build_server_release() {
         result=${result:-/}        # correct for dirname=/ case
         docker run -v cargo-cache:/root/.cargo/registry -v "$PWD:/volume" --rm -it clux/muslrust:stable cargo update
         docker run -v cargo-cache:/root/.cargo/registry -v "$PWD:/volume" --rm -it clux/muslrust:stable cargo b --package $result --bin $result --release
+}
+
+unzip_d () {
+    for i in "$@";
+    do
+            #echo "${i%.zip}"
+            unzip -d "${i%.zip}" "$i";
+    done
+}
+
+ntfy_post() {
+        curl -H "Authorization: " -d "$*" http://
 }
